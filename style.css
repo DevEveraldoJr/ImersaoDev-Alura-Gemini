@@ -1,0 +1,349 @@
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/*
+  A regra @import é usada para importar regras de outras folhas de estilo.
+  Aqui, estamos importando a fonte 'Special Gothic' do Google Fonts.
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/@import
+*/
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic:wght@400..700&display=swap');
+
+/*
+  O seletor universal (*) seleciona todos os elementos na página.
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/Universal_selectors
+*/
+* {
+    /*
+      A propriedade 'box-sizing' define como a largura e a altura de um elemento são calculadas.
+      'border-box' faz com que a borda e o padding sejam incluídos na largura e altura total do elemento.
+      Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/box-sizing
+    */
+    box-sizing: border-box;
+}
+
+/*
+  A pseudo-classe :root seleciona o elemento raiz do documento (a tag <html>).
+  É um bom lugar para declarar variáveis CSS globais.
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/:root
+*/
+:root {
+    /*
+      Variáveis CSS (Custom Properties) permitem que um valor seja armazenado em um lugar e reutilizado em vários outros.
+      Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties
+    */
+    --primary-color: #8ab4f8; /* Cor primária (azul claro) */
+    --secondary-color: #e8eaed; /* Cor secundária (cinza claro) */
+    --tertiary-color: #9aa0a6; /* Cor terciária (cinza médio) */
+    --bg-color: #31383f; /* Cor de fundo (cinza escuro) */
+}
+
+body {
+    margin: 0; /* Remove a margem padrão do body. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/margin */
+    background: transparent; /* Define a cor de fundo usando uma variável. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/background-color */
+    color: var(--secondary-color); /* Define a cor do texto padrão. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/color */
+    font-family: "Special Gothic", sans-serif; /* Define a família da fonte. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/font-family */
+    text-shadow: 0 0 2px #000, 0 0 5px #000; /* Sombra de texto para legibilidade. */
+}
+
+header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.github-icon-header {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 8px;
+    filter: invert(1);
+}
+
+header {
+    padding: 2rem 1rem; /* Espaçamento interno. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/padding */
+    display: flex; /* Habilita o layout flexbox. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/display */
+    align-items: center; /* Alinha os itens verticalmente ao centro. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/align-items */
+    justify-content: space-around; /* Distribui os itens. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/justify-content */
+    position: sticky; /* Mantém o cabeçalho fixo no topo. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/position */
+    top: 0; /* Posição do topo quando sticky. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/top */
+    background: transparent; /* Cor de fundo translúcida. */
+    z-index: 10; /* Ordem de empilhamento. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/z-index */
+    border-bottom: 1px solid var(--bg-color); /* Borda inferior. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/border-bottom */
+    gap: 1rem; /* Espaçamento entre os elementos flex. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/gap */
+    backdrop-filter: blur(10px); /* Efeito de desfoque para o fundo. */
+}
+
+header h1 {
+    font-size: 1.5rem; /* Tamanho da fonte. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/font-size */
+    margin: 0; /* Remove a margem padrão. */
+    font-weight: 500; /* Peso da fonte. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/font-weight */
+    white-space: nowrap; /* Impede a quebra de linha. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/white-space */
+    text-shadow: 0 0 5px #000, 0 0 10px #000; /* Sombra de texto para legibilidade. */
+}
+
+.barra-busca input {
+    padding: 0.375rem 0.75rem; /* Espaçamento interno. */
+    border-radius: 1rem; /* Arredonda as bordas. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/border-radius */
+    border: 1px solid var(--tertiary-color); /* Borda. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/border */
+    background: transparent; /* Cor de fundo. */
+    font-family: inherit; /* Herda a família da fonte. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/font-family */
+    font-size: 1.5rem; /* Tamanho da fonte. */
+    transition: all 0.2s ease; /* Transição suave. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/transition */
+    width: 30rem; /* Largura. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/width */
+    color: var(--secondary-color); /* Cor do texto. */
+    margin-right: .5rem; /* Margem à direita. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/margin-right */
+}
+
+/*
+  A pseudo-classe ::placeholder seleciona o texto de placeholder em um elemento <input> ou <textarea>.
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/::placeholder
+*/
+.barra-busca input::placeholder {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--tertiary-color);
+}
+
+/*
+  A pseudo-classe :focus é aplicada quando um elemento recebe foco (por clique ou tabulação).
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/:focus
+*/
+.barra-busca input:focus {
+    outline: none; /* Remove a borda de foco padrão. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/outline */
+    border-color: var(--bg-color); /* Muda a cor da borda. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/border-color */
+    box-shadow: 0 0 0 0.1rem var(--tertiary-color); /* Adiciona sombra para indicar foco. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/box-shadow */
+}
+
+#botao-busca {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer; /* Muda o cursor para uma mão. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/cursor */
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--bg-color);
+}
+
+/*
+  A pseudo-classe :hover é aplicada quando o usuário passa o mouse sobre um elemento.
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/:hover
+*/
+#botao-busca:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 0 0.1rem var(--primary-color);
+}
+
+/*
+  A pseudo-classe :active é aplicada quando um elemento está sendo ativado pelo usuário (ex: durante um clique).
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/:active
+*/
+#botao-busca:active {
+    transform: scale(0.98); /* Efeito de clique. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/transform */
+}
+
+main {
+    overflow-y: scroll; /* Adiciona barra de rolagem vertical se necessário. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/overflow-y */
+    max-width: 80rem; /* Largura máxima. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/max-width */
+    margin: 0 auto; /* Centraliza horizontalmente. */
+    margin-top: 2rem;
+    /*
+      A função calc() permite realizar cálculos para determinar valores de propriedades CSS.
+      Aqui, calcula a altura para preencher o espaço restante da tela (100% da altura da viewport - altura do header - altura do footer).
+      Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/calc
+    */
+    height: calc(100vh - 10rem - 4rem);
+    background: transparent;
+}
+
+.card-container {
+    display: none;
+}
+
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.card.highlight {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--primary-color);
+}
+
+article {
+    background: none;
+    border-radius: 0;
+    padding: 0 1rem;
+    margin-bottom: 1.25rem;
+    box-shadow: none;
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+    border-bottom: 1px solid var(--bg-color);
+    padding-bottom: 1.5rem;
+}
+
+article:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+article h2 {
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 1.6rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+
+article p {
+    margin: 0.5rem 0;
+    line-height: 1.6; /* Altura da linha para melhor legibilidade. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/line-height */
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+article p strong {
+    color: var(--tertiary-color);
+    font-weight: 400;
+}
+
+article a {
+    color: var(--primary-color);
+    text-decoration: none; /* Remove o sublinhado padrão. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/text-decoration */
+    font-weight: 200;
+}
+
+article a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse. */
+}
+
+.footer {
+    position: absolute; /* Posicionamento absoluto. */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--tertiary-color);
+    background-color: transparent; /* Cor de fundo translúcida. */
+    padding: 15px 20px;
+    border-top: 1px solid #3c4043; /* Borda superior. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/border-top */
+    font-size: 0.8rem;
+    backdrop-filter: blur(10px); /* Efeito de desfoque para o fundo. */
+    text-shadow: 0 0 5px #000, 0 0 10px #000; /* Sombra de texto para legibilidade. */
+}
+
+.footer-location {
+    color: #9aa0a6;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    list-style: none; /* Remove marcadores da lista. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/list-style */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-wrap */
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+
+
+.footer-links img, .footer-links svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.footer-links a:hover img, .footer-links a:hover svg {
+    transform: scale(1.2);
+}
+
+/*
+  Media Queries são usadas para aplicar estilos diferentes para diferentes tipos de mídia/dispositivos ou características.
+  Aqui, estamos aplicando estilos para telas com largura máxima de 768px (tablets e celulares em modo paisagem).
+  Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/Media_Queries/Using_media_queries
+*/
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Organiza os itens em coluna. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-direction */
+        padding: 1rem;
+    }
+
+    header h1 {
+        text-align: center; /* Centraliza o texto. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/text-align */
+        margin-bottom: 1rem;
+    }
+
+    .barra-busca input {
+        width: 90vw; /* Largura de 90% da largura da viewport. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/length#unidades_de_viewport */
+        font-size: 1.2rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+
+    article:hover {
+        transform: none; /* Remove o efeito de escala. */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1rem;
+        max-width: 70%;
+        word-wrap: break-word; /* Permite a quebra de palavras longas. Referência MDN: https://developer.mozilla.org/pt-BR/docs/Web/CSS/word-wrap */
+    }
+
+    .barra-busca input,
+    .barra-busca input::placeholder {
+        font-size: 1rem;
+    }
+
+    article h2 {
+        font-size: 1.3rem;
+    }
+
+    .barra-busca {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .footer {
+        display: none; /* Oculta o rodapé. */
+    }
+
+    #botao-busca {
+        margin-top: 1rem;
+    }
+}
